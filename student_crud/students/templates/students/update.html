@@ -1,0 +1,46 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <style>
+        /* Same CSS as create.html for consistency */
+        body { font-family: Arial, sans-serif; background: #f4f4f4; }
+        .container { width: 400px; margin: 50px auto; background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { text-align: center; }
+        label { display: block; margin-top: 10px; }
+        input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 3px; }
+        button { margin-top: 15px; width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        a { display: block; text-align: center; margin-top: 10px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Student</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Name:</label>
+            <input type="text" name="name" value="{{ student.name }}" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ student.email }}" required>
+
+            <!-- <label>Age:</label>
+            <input type="number" name="age" value="{{ student.age }}" required> -->
+
+            <label>Branch:</label>
+            <input type="text" name="Branch" value="{{ student.Branch }}" required>
+
+            <button type="submit">Update</button>
+        </form>
+        <a href="{% url 'student_list' %}">Back to List</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" style="margin-left: 10px; color: #dc3545;">Logout</a>
+        {% endif %}
+    </div>
+</body>
+</html>
